@@ -1,0 +1,1003 @@
+@font-face {
+  font-family: "Francois One";
+  src: url("assets/fonts/FrancoisOne-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fedra Serif A";
+  src: url("assets/fonts/FedraSerifA-Book.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fedra Serif A";
+  src: url("assets/fonts/FedraSerifA-Normal.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fedra Serif A";
+  src: url("assets/fonts/FedraSerifA-BookItalic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --lime: #8dcc39;
+  --forest: #2d551f;
+  --cyan: #00aaa4;
+  --paper: #fffefa;
+  --mist: #e7eddf;
+  --rose: #d99da0;
+  --ink: #203f18;
+  --serif: "Fedra Serif A", Georgia, "Times New Roman", serif;
+  --logo: "Francois One", Impact, "Arial Narrow Bold", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  overflow-x: hidden;
+}
+
+button,
+a {
+  color: inherit;
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page {
+  width: 100%;
+  min-height: 100svh;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.hero-left,
+.hero-right {
+  min-width: 0;
+  min-height: 0;
+}
+
+.hero-left {
+  position: relative;
+  z-index: 2;
+  padding: clamp(30px, 4vw, 52px) 0 0 clamp(30px, 4vw, 54px);
+  padding-bottom: clamp(170px, 19svh, 210px);
+  background: var(--lime);
+}
+
+.brand {
+  display: inline-grid;
+  gap: 0;
+  color: var(--forest);
+}
+
+.brand span {
+  font-family: var(--logo);
+  font-size: clamp(20px, 4.1vw, 54px);
+  line-height: 0.82;
+  letter-spacing: 0;
+}
+
+.brand small {
+  margin-top: 20px;
+  font-size: clamp(18px, 2.2vw, 34px);
+  line-height: 0.88;
+}
+
+.kicker {
+  margin-bottom: 16px;
+  color: var(--forest);
+  font-size: clamp(12px, 1.1vw, 16px);
+  font-style: italic;
+  line-height: 1;
+}
+
+.hero-copy {
+  position: absolute;
+  left: clamp(28px, 4vw, 58px);
+  right: clamp(26px, 4vw, 58px);
+  top: 38%;
+  max-width: 600px;
+}
+
+.hero-copy h1 {
+  color: var(--forest);
+  font-size: clamp(40px, min(5.55vw, 6.2svh), 66px);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.hero-copy h1 strong {
+  font-family: var(--logo);
+  font-size: 1.03em;
+  font-weight: 400;
+}
+
+.hero-right {
+  position: relative;
+  background: var(--paper);
+}
+
+.menu {
+  position: absolute;
+  top: clamp(22px, 3vw, 46px);
+  right: clamp(22px, 3vw, 46px);
+  z-index: 15;
+  display: grid;
+  width: 25px;
+  gap: 4px;
+}
+
+.menu span {
+  display: block;
+  height: 2px;
+  background: var(--cyan);
+}
+
+.temple {
+  position: absolute;
+  z-index: 4;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 1px rgba(26, 42, 18, 0.2));
+}
+
+.temple-1 {
+  top: 8.5%;
+  left: 47%;
+  right: auto;
+  width: clamp(134px, 15.4vw, 224px);
+}
+
+.temple-2 {
+  top: 23%;
+  left: 7.5%;
+  right: auto;
+  width: clamp(118px, 14.3vw, 208px);
+}
+
+.temple-3 {
+  top: 34.5%;
+  left: 35%;
+  right: auto;
+  width: clamp(88px, 10.3vw, 148px);
+}
+
+.temple-4 {
+  top: 30%;
+  left: 53%;
+  right: auto;
+  width: clamp(128px, 15.5vw, 226px);
+}
+
+.temple-5 {
+  top: 59.5%;
+  left: 11%;
+  right: auto;
+  width: clamp(132px, 16.1vw, 235px);
+}
+
+.temple-6 {
+  top: 53%;
+  left: 57%;
+  right: auto;
+  width: clamp(118px, 14.8vw, 215px);
+}
+
+.temple-7 {
+  top: 78%;
+  bottom: auto;
+  left: 5%;
+  width: clamp(102px, 12.6vw, 184px);
+}
+
+.map-section {
+  min-height: 100svh;
+  background: var(--paper);
+  color: var(--forest);
+}
+
+.map-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(108px, 14svh, 154px);
+  padding: 24px;
+  background: var(--forest);
+}
+
+.map-title-bar h2 {
+  color: var(--lime);
+  font-size: clamp(34px, 4.2vw, 58px);
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+}
+
+.route-map {
+  position: relative;
+  height: calc(100svh - clamp(108px, 14svh, 154px));
+  min-height: 650px;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.korea-shape {
+  position: absolute;
+  top: 7%;
+  left: 38.5%;
+  z-index: 1;
+  width: clamp(320px, 27vw, 430px);
+  height: min(720px, calc(100% - 76px));
+  background: var(--lime);
+  clip-path: polygon(48% 0, 64% 4%, 69% 13%, 72% 27%, 76% 43%, 81% 59%, 80% 73%, 75% 84%, 65% 91%, 54% 96%, 45% 100%, 35% 96%, 23% 100%, 12% 96%, 15% 84%, 13% 72%, 17% 58%, 22% 46%, 18% 35%, 16% 27%, 20% 19%, 31% 13%, 40% 8%);
+}
+
+.route-dot {
+  position: absolute;
+  z-index: 4;
+  width: 17px;
+  height: 17px;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: #8d5a17;
+  box-shadow: 0 0 0 2px rgba(141, 90, 23, 0.42), 0 0 0 10px rgba(141, 90, 23, 0.1);
+}
+
+.route-line {
+  position: absolute;
+  z-index: 2;
+  border-top: 1px dashed rgba(45, 85, 31, 0.38);
+  transform-origin: left center;
+}
+
+.dot-buseoksa { top: 30.5%; left: 56.4%; }
+.dot-beopjusa { top: 42.3%; left: 49.5%; }
+.dot-bongjeongsa { top: 41.4%; left: 57.2%; }
+.dot-magoksa { top: 41.5%; left: 43.1%; }
+.dot-tongdosa { top: 62.2%; left: 59.4%; }
+.dot-seonamsa { top: 73.7%; left: 45.5%; }
+.dot-daeheungsa { top: 82.7%; left: 42.3%; }
+
+.line-magoksa { top: 42.7%; left: 31.6%; width: 11.9%; transform: rotate(-3deg); }
+.line-buseoksa { top: 31.5%; left: 56.8%; width: 12.2%; transform: rotate(-25deg); }
+.line-beopjusa { top: 43.1%; left: 50%; width: 18.6%; transform: rotate(-13deg); }
+.line-bongjeongsa { top: 42.1%; left: 57.6%; width: 11.7%; transform: rotate(13deg); }
+.line-tongdosa { top: 63.1%; left: 59.8%; width: 9.5%; transform: rotate(12deg); }
+.line-seonamsa { top: 74.6%; left: 31.5%; width: 14.3%; transform: rotate(-3deg); }
+.line-daeheungsa { top: 83.6%; left: 31%; width: 11.6%; transform: rotate(-18deg); }
+
+.line-temple {
+  position: absolute;
+  z-index: 3;
+  width: clamp(116px, 11vw, 180px);
+  height: clamp(78px, 7.2vw, 118px);
+  color: var(--cyan);
+  background: var(--temple-icon) center / contain no-repeat;
+}
+
+.line-temple span {
+  display: none;
+}
+
+.icon-magoksa {
+  top: 31%;
+  left: 4%;
+  --temple-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 120' fill='none' stroke='%2300aaa4' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 55 C48 65 132 65 162 55'/%3E%3Cpath d='M18 55 L18 49 M162 55 L162 49'/%3E%3Cpath d='M31 62 V96 H149 V62'/%3E%3Cpath d='M31 96 H149'/%3E%3C/svg%3E");
+}
+
+.icon-seonamsa {
+  top: 47%;
+  left: 5.5%;
+  --temple-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 120' fill='none' stroke='%2300aaa4' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M26 56 C54 52 78 35 90 16 C102 35 126 52 154 56'/%3E%3Cpath d='M26 56 L26 64 L42 67 L40 98 H140 L138 67 L154 64 L154 56'/%3E%3Cpath d='M42 98 H138'/%3E%3C/svg%3E");
+}
+
+.icon-daeheungsa {
+  top: 72%;
+  left: 6.5%;
+  --temple-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 120' fill='none' stroke='%2300aaa4' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M24 48 C58 56 122 56 156 48'/%3E%3Cpath d='M24 48 L24 42 M156 48 L156 42'/%3E%3Cpath d='M34 55 L28 61 L38 66 L32 72 H148 L142 66 L152 61 L146 55'/%3E%3Cpath d='M50 72 V106 H64 L60 72'/%3E%3Cpath d='M130 72 L126 106 H140 V72'/%3E%3Cpath d='M64 78 H126'/%3E%3C/svg%3E");
+}
+
+.icon-buseoksa {
+  top: 10%;
+  right: 5.2%;
+  --temple-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 120' fill='none' stroke='%2300aaa4' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 68 C55 64 78 43 90 22 C102 43 125 64 158 68'/%3E%3Cpath d='M22 68 L22 74 L35 77 L35 104 H145 L145 77 L158 74 L158 68'/%3E%3Cpath d='M48 78 V100 M132 78 V100 M35 104 H145'/%3E%3C/svg%3E");
+}
+
+.icon-beopjusa {
+  top: 31%;
+  right: 6.2%;
+  --temple-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 190' fill='none' stroke='%2300aaa4' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M80 12 V2'/%3E%3Cpath d='M58 36 L80 17 L102 36'/%3E%3Cpath d='M44 58 L80 36 L116 58'/%3E%3Cpath d='M36 82 L80 58 L124 82'/%3E%3Cpath d='M29 108 L80 82 L131 108'/%3E%3Cpath d='M22 134 L80 108 L138 134'/%3E%3Cpath d='M42 58 H118 M48 82 H112 M53 108 H107 M58 134 H102'/%3E%3Cpath d='M58 134 V170 H102 V134'/%3E%3Cpath d='M46 170 H114'/%3E%3C/svg%3E");
+}
+
+.icon-bongjeongsa {
+  top: 53%;
+  right: 5.4%;
+  --temple-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 120' fill='none' stroke='%2300aaa4' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 48 C54 54 126 54 160 48'/%3E%3Cpath d='M20 48 L20 42 M160 48 L160 42'/%3E%3Cpath d='M34 57 V92 H146 V57'/%3E%3Cpath d='M34 92 H146'/%3E%3C/svg%3E");
+}
+
+.icon-tongdosa {
+  top: 72%;
+  right: 7.3%;
+  --temple-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 120' fill='none' stroke='%2300aaa4' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M24 70 C54 62 78 46 90 28 C102 46 126 62 156 70'/%3E%3Cpath d='M24 70 L24 76 L38 80 L38 104 H142 L142 80 L156 76 L156 70'/%3E%3Cpath d='M38 104 H142'/%3E%3C/svg%3E");
+}
+
+.icon-beopjusa {
+  height: clamp(138px, 12vw, 190px);
+}
+
+.icon-daeheungsa {
+  height: clamp(98px, 9vw, 138px);
+}
+
+.route-label {
+  position: absolute;
+  z-index: 4;
+  color: var(--forest);
+  font-size: clamp(20px, 1.7vw, 29px);
+  line-height: 1.08;
+}
+
+.route-label strong {
+  display: block;
+  color: var(--forest);
+  font-weight: 500;
+}
+
+.route-label span {
+  display: block;
+  color: var(--cyan);
+  font-style: italic;
+}
+
+.label-buseoksa { top: 27%; left: 67%; }
+.label-beopjusa { top: 37.5%; left: 67%; }
+.label-bongjeongsa { top: 45%; left: 67%; }
+.label-tongdosa { top: 62%; left: 67%; }
+.label-magoksa { top: 39%; left: 25%; text-align: right; }
+.label-seonamsa { top: 72%; left: 24%; text-align: right; }
+.label-daeheungsa { top: 84%; left: 22%; text-align: right; }
+
+.temple-explorer {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+  min-height: 76svh;
+  background: var(--paper);
+}
+
+.temple-list {
+  position: relative;
+  min-height: 620px;
+  background: var(--lime);
+}
+
+.temple-list h2 {
+  position: absolute;
+  top: 40px;
+  left: clamp(28px, 4vw, 58px);
+  max-width: 220px;
+  color: var(--forest);
+  font-size: clamp(28px, 3.2vw, 46px);
+  font-weight: 400;
+  line-height: 0.96;
+}
+
+.temple-name {
+  position: absolute;
+  z-index: 2;
+  color: var(--forest);
+  font-size: clamp(16px, 1.7vw, 24px);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.temple-name:hover,
+.temple-name:focus-visible,
+.temple-name.active {
+  opacity: 0.72;
+  transform: translateX(8px);
+}
+
+.name-1 {
+  top: 18%;
+  left: 53%;
+  font-style: italic;
+}
+
+.name-2 {
+  top: 32%;
+  left: 13%;
+}
+
+.name-3 {
+  top: 36%;
+  left: 58%;
+}
+
+.name-4 {
+  top: 50%;
+  left: 32%;
+}
+
+.name-5 {
+  top: 65%;
+  left: 55%;
+}
+
+.name-6 {
+  top: 76%;
+  left: 23%;
+}
+
+.name-7 {
+  top: 89%;
+  left: 9%;
+}
+
+.temple-feature {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 620px;
+  padding: clamp(44px, 6vw, 86px);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.temple-feature::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  opacity: 0.5;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(45, 85, 31, 0.18) 8px 10px),
+    linear-gradient(165deg, transparent 0 28%, rgba(217, 157, 160, 0.35) 28% 39%, transparent 39% 100%);
+  clip-path: polygon(0 38%, 24% 50%, 49% 34%, 69% 45%, 100% 27%, 100% 100%, 0 100%);
+}
+
+.feature-image-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 260px;
+  width: min(82%, 560px);
+}
+
+.featured-temple {
+  display: block;
+  width: min(100%, 470px);
+  max-height: 340px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 2px rgba(26, 42, 18, 0.18));
+}
+
+.feature-copy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 520px);
+  margin-top: 36px;
+  color: var(--forest);
+}
+
+.feature-count {
+  margin-bottom: 10px;
+  color: var(--cyan);
+  font-family: var(--logo);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.feature-copy h2 {
+  font-family: var(--logo);
+  font-size: clamp(36px, 5vw, 70px);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.feature-location {
+  margin-top: 12px;
+  font-size: clamp(18px, 1.9vw, 26px);
+  font-style: italic;
+  line-height: 1.1;
+}
+
+#featureDescription {
+  margin-top: 16px;
+  font-size: clamp(17px, 1.45vw, 21px);
+  line-height: 1.2;
+}
+
+.context-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+  gap: clamp(36px, 5vw, 82px);
+  padding: clamp(70px, 8vw, 118px) clamp(28px, 6vw, 96px);
+  background: var(--forest);
+  color: var(--lime);
+  overflow: hidden;
+}
+
+.pattern-landscape {
+  position: relative;
+  min-height: 360px;
+}
+
+.pattern-landscape span {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 42%;
+  border: 2px solid rgba(255, 254, 250, 0.35);
+}
+
+.pattern-landscape span:nth-child(1) {
+  top: 0;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 254, 250, 0.58) 0 2px, transparent 2px 8px),
+    var(--lime);
+  clip-path: polygon(0 68%, 16% 38%, 36% 62%, 55% 27%, 72% 56%, 100% 31%, 100% 100%, 0 100%);
+}
+
+.pattern-landscape span:nth-child(2) {
+  top: 31%;
+  background:
+    repeating-linear-gradient(135deg, rgba(32, 63, 24, 0.7) 0 2px, transparent 2px 7px),
+    var(--cyan);
+  clip-path: polygon(0 48%, 20% 62%, 40% 34%, 56% 64%, 76% 42%, 100% 58%, 100% 100%, 0 100%);
+}
+
+.pattern-landscape span:nth-child(3) {
+  top: 61%;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 254, 250, 0.78) 0 7px, rgba(45, 85, 31, 0.8) 7px 13px),
+    var(--rose);
+  clip-path: polygon(0 32%, 19% 52%, 41% 41%, 62% 64%, 81% 38%, 100% 54%, 100% 100%, 0 100%);
+}
+
+.context-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.context-copy .kicker {
+  color: var(--lime);
+}
+
+.context-copy h2 {
+  max-width: 780px;
+  font-size: clamp(34px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.context-copy p:last-child {
+  max-width: 690px;
+  margin-top: 28px;
+  color: var(--paper);
+  font-size: clamp(18px, 1.55vw, 24px);
+  line-height: 1.22;
+}
+
+.travel-notes {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(18px, 3vw, 40px);
+  border: 1px solid rgba(141, 204, 57, 0.5);
+  background: rgba(141, 204, 57, 0.5);
+}
+
+.travel-notes div {
+  min-height: 190px;
+  padding: clamp(24px, 3vw, 38px);
+  background: var(--forest);
+}
+
+.travel-notes h3 {
+  margin-bottom: 14px;
+  font-family: var(--logo);
+  font-size: clamp(24px, 2.4vw, 36px);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.travel-notes p {
+  color: var(--paper);
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.25;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  padding: 24px clamp(24px, 4vw, 64px);
+  background: var(--paper);
+  color: var(--forest);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.site-footer p {
+  max-width: 660px;
+}
+
+.site-footer div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.site-footer a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.info-panel {
+  position: fixed;
+  top: 0;
+  right: -430px;
+  z-index: 100;
+  width: min(420px, 100%);
+  min-height: 100svh;
+  padding: 34px;
+  background: var(--forest);
+  color: var(--lime);
+  box-shadow: -12px 0 30px rgba(26, 42, 18, 0.24);
+  transition: right 260ms ease;
+}
+
+.info-panel.open {
+  right: 0;
+}
+
+.close-btn {
+  margin-bottom: 56px;
+  color: var(--paper);
+  font-family: var(--logo);
+  font-size: 16px;
+}
+
+.info-panel h2 {
+  font-family: var(--logo);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.info-panel p {
+  margin-top: 20px;
+  color: var(--paper);
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.info-panel nav {
+  display: grid;
+  gap: 14px;
+  margin-top: 38px;
+}
+
+.info-panel a {
+  width: fit-content;
+  color: var(--lime);
+  font-size: 21px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    display: block;
+    min-height: 0;
+  }
+
+  .hero-left {
+    min-height: 58svh;
+    padding-bottom: 70px;
+  }
+
+  .hero-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin-top: clamp(80px, 14svh, 130px);
+  }
+
+  .hero-copy h1 {
+    max-width: 620px;
+    font-size: clamp(38px, 10.4vw, 72px);
+  }
+
+  .hero-right {
+    min-height: 560px;
+  }
+
+  .temple-explorer {
+    display: block;
+  }
+
+  .map-section {
+    display: block;
+    min-height: 100svh;
+  }
+
+  .map-title-bar {
+    min-height: 116px;
+    padding: 24px 28px;
+  }
+
+  .map-title-bar h2 {
+    max-width: 760px;
+    font-size: clamp(32px, 6.4vw, 48px);
+  }
+
+  .route-map {
+    min-height: 760px;
+  }
+
+  .korea-shape {
+    top: 12%;
+    left: 37%;
+    width: 250px;
+    height: 510px;
+  }
+
+  .line-temple {
+    width: 122px;
+    height: 84px;
+  }
+
+  .icon-magoksa { top: 31%; left: 2.5%; }
+  .icon-seonamsa { top: 48%; left: 3.5%; }
+  .icon-daeheungsa { top: 72%; left: 4.5%; }
+  .icon-buseoksa { top: 9%; right: 3.5%; }
+  .icon-beopjusa { top: 31%; right: 4.5%; }
+  .icon-bongjeongsa { top: 54%; right: 3.8%; }
+  .icon-tongdosa { top: 73%; right: 5%; }
+
+  .icon-beopjusa {
+    height: 142px;
+  }
+
+  .icon-daeheungsa {
+    height: 102px;
+  }
+
+  .route-label {
+    font-size: clamp(17px, 2.7vw, 22px);
+  }
+
+  .label-buseoksa { top: 28%; right: auto; left: 66%; text-align: left; }
+  .label-beopjusa { top: 38%; right: auto; left: 66%; text-align: left; }
+  .label-bongjeongsa { top: 45%; right: auto; left: 66%; text-align: left; }
+  .label-tongdosa { top: 63%; right: auto; left: 66%; text-align: left; }
+  .label-magoksa { top: 39%; right: auto; left: 21%; text-align: right; }
+  .label-seonamsa { top: 72%; right: auto; left: 19%; text-align: right; }
+  .label-daeheungsa { top: 83%; right: auto; left: 16%; text-align: right; }
+
+  .line-magoksa { top: 42.6%; left: 29.5%; width: 13.8%; }
+  .line-seonamsa { left: 27%; width: 19%; }
+  .line-daeheungsa { left: 25%; width: 15.2%; }
+
+  .temple-list,
+  .temple-feature {
+    min-height: 560px;
+  }
+
+  .context-section {
+    grid-template-columns: 1fr;
+  }
+
+  .pattern-landscape {
+    min-height: 260px;
+  }
+
+  .travel-notes {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-left {
+    min-height: auto;
+    padding: 28px 28px 56px;
+  }
+
+  .brand span {
+    font-size: 34px;
+  }
+
+  .brand small {
+    font-size: 18px;
+  }
+
+  .hero-right {
+    min-height: 470px;
+  }
+
+  .menu {
+    top: 22px;
+    right: 20px;
+  }
+
+  .temple-1 { top: 4%; right: 13%; left: auto; bottom: auto; width: 150px; }
+  .temple-2 { top: 19%; left: 5%; right: auto; bottom: auto; width: 142px; }
+  .temple-3 { top: 25%; right: 7%; left: auto; bottom: auto; width: 86px; }
+  .temple-4 { top: 40%; left: 36%; right: auto; bottom: auto; width: 145px; }
+  .temple-5 { top: 57%; right: 5%; left: auto; bottom: auto; width: 142px; }
+  .temple-6 { top: auto; right: auto; bottom: 8%; left: 8%; width: 142px; }
+  .temple-7 { top: auto; right: 36%; bottom: 12%; left: auto; width: 108px; }
+
+  .map-title-bar {
+    min-height: 96px;
+    padding: 18px 22px;
+  }
+
+  .map-title-bar h2 {
+    font-size: clamp(25px, 7.5vw, 34px);
+    line-height: 1.05;
+  }
+
+  .route-map {
+    min-height: 720px;
+  }
+
+  .korea-shape {
+    top: 18%;
+    left: 33%;
+    width: 176px;
+    height: 360px;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .route-dot {
+    width: 11px;
+    height: 11px;
+  }
+
+  .line-temple {
+    width: 82px;
+    height: 58px;
+  }
+
+  .icon-magoksa { top: 30%; left: -1%; }
+  .icon-seonamsa { top: 49%; left: 1%; }
+  .icon-daeheungsa { top: 74%; left: 2%; }
+  .icon-buseoksa { top: 9%; right: -1%; }
+  .icon-beopjusa { top: 32%; right: 1%; }
+  .icon-bongjeongsa { top: 55%; right: -1%; }
+  .icon-tongdosa { top: 75%; right: 2%; }
+
+  .icon-beopjusa {
+    height: 96px;
+  }
+
+  .icon-daeheungsa {
+    height: 72px;
+  }
+
+  .route-label {
+    font-size: 13px;
+  }
+
+  .label-buseoksa { top: 28%; right: auto; left: 65%; text-align: left; }
+  .label-beopjusa { top: 38%; right: auto; left: 65%; text-align: left; }
+  .label-bongjeongsa { top: 46%; right: auto; left: 65%; text-align: left; }
+  .label-tongdosa { top: 63%; right: auto; left: 65%; text-align: left; }
+  .label-magoksa { top: 40%; right: auto; left: 8%; text-align: right; }
+  .label-seonamsa { top: 72%; right: auto; left: 8%; text-align: right; }
+  .label-daeheungsa { top: 83%; right: auto; left: 6%; text-align: right; }
+
+  .temple-list {
+    min-height: 520px;
+  }
+
+  .temple-list h2 {
+    top: 30px;
+    left: 28px;
+  }
+
+  .temple-name {
+    font-size: 16px;
+  }
+
+  .name-1 { top: 18%; left: 50%; }
+  .name-2 { top: 31%; left: 9%; }
+  .name-3 { top: 36%; left: 48%; }
+  .name-4 { top: 50%; left: 28%; }
+  .name-5 { top: 64%; left: 49%; }
+  .name-6 { top: 76%; left: 18%; }
+  .name-7 { top: 89%; left: 8%; }
+
+  .temple-feature {
+    min-height: auto;
+    padding: 58px 28px 66px;
+  }
+
+  .feature-image-wrap {
+    min-height: 210px;
+    width: 100%;
+  }
+
+  .featured-temple {
+    max-height: 260px;
+  }
+
+  .context-section {
+    padding: 64px 28px;
+  }
+
+  .site-footer {
+    display: grid;
+  }
+
+  .site-footer div {
+    justify-content: flex-start;
+  }
+}

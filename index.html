@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SANSA — The Seven Mountain Monasteries</title>
+  <meta name="description" content="A visual guide to SANSA, the seven UNESCO-listed Buddhist mountain monasteries in South Korea." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero" id="top">
+      <div class="hero-left">
+        <a class="brand" href="#top" aria-label="SANSA home">
+          <span>SANSA</span>
+          <small>The Seven<br>Monasteries</small>
+        </a>
+
+        <div class="hero-copy">
+          <h1><strong>SANSA</strong> is a<br>Unesco World<br>Heritage Site with<br>temples located<br>across South Korea</h1>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-label="Temple collage">
+        <button class="menu" id="menuBtn" type="button" aria-label="Open information panel">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <img src="assets/images/Buseoksa.svg" class="temple temple-1" alt="">
+        <img src="assets/images/Magoksa.svg" class="temple temple-2" alt="">
+        <img src="assets/images/Beopjusa.svg" class="temple temple-3" alt="">
+        <img src="assets/images/Bongjeongsa.svg" class="temple temple-4" alt="">
+        <img src="assets/images/Seonamsa.svg" class="temple temple-5" alt="">
+        <img src="assets/images/Tongdosa.svg" class="temple temple-6" alt="">
+        <img src="assets/images/Daeheungsa.svg" class="temple temple-7" alt="">
+      </div>
+
+    </section>
+
+    <section class="map-section" id="map" aria-labelledby="map-heading">
+      <div class="map-title-bar">
+        <h2 id="map-heading">Seven Temples Located Across South Korea</h2>
+      </div>
+
+      <div class="route-map" aria-label="Stylized route map showing the seven SANSA temples">
+        <div class="line-temple icon-magoksa" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="line-temple icon-seonamsa" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="line-temple icon-daeheungsa" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="line-temple icon-buseoksa" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="line-temple icon-beopjusa" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="line-temple icon-bongjeongsa" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="line-temple icon-tongdosa" aria-hidden="true"><span></span><span></span><span></span></div>
+
+        <div class="korea-shape" aria-hidden="true"></div>
+
+        <span class="route-line line-magoksa"></span>
+        <span class="route-line line-buseoksa"></span>
+        <span class="route-line line-beopjusa"></span>
+        <span class="route-line line-bongjeongsa"></span>
+        <span class="route-line line-tongdosa"></span>
+        <span class="route-line line-seonamsa"></span>
+        <span class="route-line line-daeheungsa"></span>
+
+        <span class="route-dot dot-buseoksa"></span>
+        <span class="route-dot dot-bongjeongsa"></span>
+        <span class="route-dot dot-beopjusa"></span>
+        <span class="route-dot dot-magoksa"></span>
+        <span class="route-dot dot-seonamsa"></span>
+        <span class="route-dot dot-tongdosa"></span>
+        <span class="route-dot dot-daeheungsa"></span>
+
+        <div class="route-label label-buseoksa">
+          <strong>Buseoksa</strong>
+          <span>Yeongju</span>
+        </div>
+        <div class="route-label label-bongjeongsa">
+          <strong>Bongjeongsa</strong>
+          <span>Andong</span>
+        </div>
+        <div class="route-label label-beopjusa">
+          <strong>Beopjusa</strong>
+          <span>Boeun</span>
+        </div>
+        <div class="route-label label-magoksa">
+          <strong>Magoksa</strong>
+          <span>Gongju</span>
+        </div>
+        <div class="route-label label-seonamsa">
+          <strong>Seonamsa</strong>
+          <span>Suncheon</span>
+        </div>
+        <div class="route-label label-tongdosa">
+          <strong>Tongdosa</strong>
+          <span>Yangsan</span>
+        </div>
+        <div class="route-label label-daeheungsa">
+          <strong>Daeheungsa</strong>
+          <span>Haenam</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="temple-explorer" id="temples" aria-labelledby="temple-heading">
+      <div class="temple-list">
+        <h2 id="temple-heading">Choose a temple</h2>
+
+        <button class="temple-name name-1 active" type="button" data-temple="Buseoksa">BUSEOKSA</button>
+        <button class="temple-name name-2" type="button" data-temple="Magoksa">MAGOKSA</button>
+        <button class="temple-name name-3" type="button" data-temple="Bongjeongsa">BONGJEONGSA</button>
+        <button class="temple-name name-4" type="button" data-temple="Beopjusa">BEOPJUSA</button>
+        <button class="temple-name name-5" type="button" data-temple="Seonamsa">SEONAMSA</button>
+        <button class="temple-name name-6" type="button" data-temple="Tongdosa">TONGDOSA</button>
+        <button class="temple-name name-7" type="button" data-temple="Daeheungsa">DAEHEUNGSA</button>
+      </div>
+
+      <article class="temple-feature" aria-live="polite">
+        <div class="feature-image-wrap">
+          <img src="assets/images/Buseoksa.svg" class="featured-temple" id="featuredTemple" alt="Buseoksa temple illustration">
+        </div>
+
+        <div class="feature-copy">
+          <p class="feature-count" id="featureCount">01 / 07</p>
+          <h2 id="featureTitle">Buseoksa</h2>
+          <p class="feature-location" id="featureLocation">Yeongju, Gyeongsangbuk-do</p>
+          <p id="featureDescription">
+            A northern stop in the Sansa group, Buseoksa introduces the route as a
+            mountain monastery where architecture, worship, and landscape are read together.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section class="context-section" id="visit">
+      <div class="pattern-landscape" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="context-copy">
+        <p class="kicker">For future temple travelers</p>
+        <h2>Visit SANSA slowly: each monastery is still a place of faith before it is a destination.</h2>
+        <p>
+          The seven temples share a Korean spatial pattern: a madang, or open courtyard,
+          arranged with buildings for worship, gathering, learning, and monastic living.
+          For travelers, that means the experience is less about one landmark and more
+          about entering a working rhythm of mountain, gate, hall, and courtyard.
+        </p>
+      </div>
+
+      <div class="travel-notes">
+        <div>
+          <h3>Before You Go</h3>
+          <p>Check each temple's visitor hours, stay quiet around active worship, and leave time for the approach from the nearest town.</p>
+        </div>
+        <div>
+          <h3>What To Notice</h3>
+          <p>Look for the courtyard layout, pavilions, main halls, lecture spaces, dormitories, painted wood, and the way buildings meet the mountain slope.</p>
+        </div>
+        <div>
+          <h3>How To Travel</h3>
+          <p>These temples are spread across several provinces, so treat SANSA as a route to plan over multiple days rather than a single stop.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Context referenced from UNESCO World Heritage Centre, the Ministry of Foreign Affairs of the Republic of Korea, and the official Korean Sansa project site.</p>
+      <div>
+        <a href="https://whc.unesco.org/en/list/1562/" target="_blank" rel="noreferrer">UNESCO</a>
+        <a href="https://www.mofa.go.kr/eng/brd/m_5674/view.do?seq=319711" target="_blank" rel="noreferrer">MOFA</a>
+        <a href="https://www.koreansansa.net/eng/sansa/sansa_01.do" target="_blank" rel="noreferrer">Korean Sansa</a>
+      </div>
+    </footer>
+  </main>
+
+  <aside class="info-panel" id="infoPanel" aria-hidden="true">
+    <button class="close-btn" id="closeBtn" type="button" aria-label="Close information panel">Close</button>
+    <h2>SANSA</h2>
+    <p>
+      Sansa is a serial UNESCO World Heritage property made of seven Buddhist mountain
+      monasteries: Tongdosa, Buseoksa, Bongjeongsa, Beopjusa, Magoksa, Seonamsa, and Daeheungsa.
+    </p>
+    <nav aria-label="Quick links">
+      <a href="#map">View map</a>
+      <a href="#temples">Explore temples</a>
+      <a href="#visit">Visitor notes</a>
+      <a href="https://whc.unesco.org/en/list/1562/" target="_blank" rel="noreferrer">Source: UNESCO</a>
+    </nav>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
