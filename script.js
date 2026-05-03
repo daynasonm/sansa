@@ -7,6 +7,13 @@ const featureCount = document.getElementById("featureCount");
 const featureTitle = document.getElementById("featureTitle");
 const featureLocation = document.getElementById("featureLocation");
 const featureDescription = document.getElementById("featureDescription");
+const hero = document.querySelector(".hero");
+const heroRight = document.querySelector(".hero-right");
+const heroTemples = document.querySelectorAll(".temple[data-temple]");
+const routeMap = document.querySelector(".route-map");
+const routeItems = document.querySelectorAll(".route-dot[data-temple], .route-label[data-temple]");
+const revealItems = document.querySelectorAll("[data-reveal]");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const temples = {
   Buseoksa: {
@@ -65,15 +72,100 @@ function setTemple(name) {
 
   if (!temple) return;
 
-  featuredTemple.src = temple.image;
-  featuredTemple.alt = `${name} temple illustration`;
-  featureCount.textContent = temple.count;
-  featureTitle.textContent = name;
-  featureLocation.textContent = temple.location;
-  featureDescription.textContent = temple.description;
+  const updateFeature = () => {
+    featuredTemple.src = temple.image;
+    featuredTemple.alt = `${name} temple illustration`;
+    featureCount.textContent = temple.count;
+    featureTitle.textContent = name;
+    featureLocation.textContent = temple.location;
+    featureDescription.textContent = temple.description;
+    featuredTemple.classList.remove("is-changing");
+  };
+
+  if (!reduceMotion && featuredTemple.src && !featuredTemple.src.endsWith(temple.image)) {
+    featuredTemple.classList.add("is-changing");
+    window.setTimeout(updateFeature, 120);
+  } else {
+    updateFeature();
+  }
 
   templeButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.temple === name);
+  });
+
+  heroTemples.forEach((image) => {
+    image.classList.toggle("is-active", image.dataset.temple === name);
+  });
+
+  routeItems.forEach((item) => {
+    item.classList.toggle("is-active", item.dataset.temple === name);
+  });
+}
+
+document.body.classList.add("js-ready");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+
+  if (routeMap) {
+    const mapObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          routeMap.classList.add("is-visible");
+          mapObserver.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    mapObserver.observe(routeMap);
+  }
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+  routeMap?.classList.add("is-visible");
+}
+
+function updateHeroProgress() {
+  if (!hero) return;
+
+  const rect = hero.getBoundingClientRect();
+  const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height - window.innerHeight)));
+  hero.style.setProperty("--hero-progress", progress.toFixed(3));
+}
+
+window.addEventListener("scroll", updateHeroProgress, { passive: true });
+updateHeroProgress();
+
+if (heroRight && !reduceMotion) {
+  heroRight.addEventListener("pointermove", (event) => {
+    const rect = heroRight.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    heroTemples.forEach((image) => {
+      const depth = Number(image.dataset.depth) || 0;
+      image.style.setProperty("--parallax-x", `${(x * depth * 34).toFixed(2)}px`);
+      image.style.setProperty("--parallax-y", `${(y * depth * 24).toFixed(2)}px`);
+    });
+  });
+
+  heroRight.addEventListener("pointerleave", () => {
+    heroTemples.forEach((image) => {
+      image.style.setProperty("--parallax-x", "0px");
+      image.style.setProperty("--parallax-y", "0px");
+    });
   });
 }
 
@@ -98,4 +190,13 @@ templeButtons.forEach((button) => {
   button.addEventListener("mouseenter", () => setTemple(button.dataset.temple));
   button.addEventListener("focus", () => setTemple(button.dataset.temple));
   button.addEventListener("click", () => setTemple(button.dataset.temple));
+});
+
+heroTemples.forEach((image) => {
+  image.addEventListener("mouseenter", () => setTemple(image.dataset.temple));
+});
+
+routeItems.forEach((item) => {
+  item.addEventListener("mouseenter", () => setTemple(item.dataset.temple));
+  item.addEventListener("focus", () => setTemple(item.dataset.temple));
 });

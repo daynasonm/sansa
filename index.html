@@ -10,7 +10,14 @@
 
 <body>
   <main class="page">
-    <section class="hero" id="top">
+    <nav class="story-nav" aria-label="Page sections">
+      <a href="#top">Intro</a>
+      <a href="#map">Map</a>
+      <a href="#temples">Temples</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <section class="hero" id="top" data-reveal>
       <div class="hero-left">
         <a class="brand" href="#top" aria-label="SANSA home">
           <span>SANSA</span>
@@ -29,18 +36,20 @@
           <span></span>
         </button>
 
-        <img src="assets/images/Buseoksa.svg" class="temple temple-1" alt="">
-        <img src="assets/images/Magoksa.svg" class="temple temple-2" alt="">
-        <img src="assets/images/Beopjusa.svg" class="temple temple-3" alt="">
-        <img src="assets/images/Bongjeongsa.svg" class="temple temple-4" alt="">
-        <img src="assets/images/Seonamsa.svg" class="temple temple-5" alt="">
-        <img src="assets/images/Tongdosa.svg" class="temple temple-6" alt="">
-        <img src="assets/images/Daeheungsa.svg" class="temple temple-7" alt="">
+        <img src="assets/images/sansa pattern@3x.png" class="hero-pattern-art" alt="" aria-hidden="true">
+
+        <img src="assets/images/Buseoksa.svg" class="temple temple-1" data-temple="Buseoksa" data-depth="0.55" alt="">
+        <img src="assets/images/Magoksa.svg" class="temple temple-2" data-temple="Magoksa" data-depth="-0.35" alt="">
+        <img src="assets/images/Beopjusa.svg" class="temple temple-3" data-temple="Beopjusa" data-depth="0.72" alt="">
+        <img src="assets/images/Bongjeongsa.svg" class="temple temple-4" data-temple="Bongjeongsa" data-depth="-0.48" alt="">
+        <img src="assets/images/Seonamsa.svg" class="temple temple-5" data-temple="Seonamsa" data-depth="0.38" alt="">
+        <img src="assets/images/Tongdosa.svg" class="temple temple-6" data-temple="Tongdosa" data-depth="-0.62" alt="">
+        <img src="assets/images/Daeheungsa.svg" class="temple temple-7" data-temple="Daeheungsa" data-depth="0.44" alt="">
       </div>
 
     </section>
 
-    <section class="map-section" id="map" aria-labelledby="map-heading">
+    <section class="map-section" id="map" aria-labelledby="map-heading" data-reveal>
       <div class="map-title-bar">
         <h2 id="map-heading">Seven Temples Located Across South Korea</h2>
       </div>
@@ -64,46 +73,46 @@
         <span class="route-line line-seonamsa"></span>
         <span class="route-line line-daeheungsa"></span>
 
-        <span class="route-dot dot-buseoksa"></span>
-        <span class="route-dot dot-bongjeongsa"></span>
-        <span class="route-dot dot-beopjusa"></span>
-        <span class="route-dot dot-magoksa"></span>
-        <span class="route-dot dot-seonamsa"></span>
-        <span class="route-dot dot-tongdosa"></span>
-        <span class="route-dot dot-daeheungsa"></span>
+        <span class="route-dot dot-buseoksa" data-temple="Buseoksa"></span>
+        <span class="route-dot dot-bongjeongsa" data-temple="Bongjeongsa"></span>
+        <span class="route-dot dot-beopjusa" data-temple="Beopjusa"></span>
+        <span class="route-dot dot-magoksa" data-temple="Magoksa"></span>
+        <span class="route-dot dot-seonamsa" data-temple="Seonamsa"></span>
+        <span class="route-dot dot-tongdosa" data-temple="Tongdosa"></span>
+        <span class="route-dot dot-daeheungsa" data-temple="Daeheungsa"></span>
 
-        <div class="route-label label-buseoksa">
+        <div class="route-label label-buseoksa" data-temple="Buseoksa">
           <strong>Buseoksa</strong>
           <span>Yeongju</span>
         </div>
-        <div class="route-label label-bongjeongsa">
+        <div class="route-label label-bongjeongsa" data-temple="Bongjeongsa">
           <strong>Bongjeongsa</strong>
           <span>Andong</span>
         </div>
-        <div class="route-label label-beopjusa">
+        <div class="route-label label-beopjusa" data-temple="Beopjusa">
           <strong>Beopjusa</strong>
           <span>Boeun</span>
         </div>
-        <div class="route-label label-magoksa">
+        <div class="route-label label-magoksa" data-temple="Magoksa">
           <strong>Magoksa</strong>
           <span>Gongju</span>
         </div>
-        <div class="route-label label-seonamsa">
+        <div class="route-label label-seonamsa" data-temple="Seonamsa">
           <strong>Seonamsa</strong>
           <span>Suncheon</span>
         </div>
-        <div class="route-label label-tongdosa">
+        <div class="route-label label-tongdosa" data-temple="Tongdosa">
           <strong>Tongdosa</strong>
           <span>Yangsan</span>
         </div>
-        <div class="route-label label-daeheungsa">
+        <div class="route-label label-daeheungsa" data-temple="Daeheungsa">
           <strong>Daeheungsa</strong>
           <span>Haenam</span>
         </div>
       </div>
     </section>
 
-    <section class="temple-explorer" id="temples" aria-labelledby="temple-heading">
+    <section class="temple-explorer" id="temples" aria-labelledby="temple-heading" data-reveal>
       <div class="temple-list">
         <h2 id="temple-heading">Choose a temple</h2>
 
@@ -133,7 +142,7 @@
       </article>
     </section>
 
-    <section class="context-section" id="visit">
+    <section class="context-section" id="visit" data-reveal>
       <div class="pattern-landscape" aria-hidden="true">
         <span></span>
         <span></span>
