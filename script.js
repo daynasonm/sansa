@@ -13,6 +13,10 @@ const heroTemples = document.querySelectorAll(".temple[data-temple]");
 const routeMap = document.querySelector(".route-map");
 const routeItems = document.querySelectorAll(".route-dot[data-temple], .route-label[data-temple]");
 const revealItems = document.querySelectorAll("[data-reveal]");
+const blueprintSection = document.querySelector(".blueprint-section");
+const blueprintSteps = document.querySelectorAll(".blueprint-step");
+const blueprintCards = document.querySelectorAll(".blueprint-card");
+const blueprintCurrent = document.getElementById("blueprintCurrent");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const temples = {
@@ -148,6 +152,84 @@ function updateHeroProgress() {
 window.addEventListener("scroll", updateHeroProgress, { passive: true });
 updateHeroProgress();
 
+function getBlueprintProgress() {
+  if (!blueprintSection) return 0;
+
+  const rect = blueprintSection.getBoundingClientRect();
+  const scrollableDistance = Math.max(1, blueprintSection.offsetHeight - window.innerHeight);
+
+  return Math.min(1, Math.max(0, -rect.top / scrollableDistance));
+}
+
+function updateBlueprintScene() {
+  if (!blueprintSection || !blueprintCards.length) return;
+
+  const progress = getBlueprintProgress();
+  const lastIndex = blueprintCards.length - 1;
+  const scrollIndex = progress * lastIndex;
+  const activeIndex = Math.min(lastIndex, Math.max(0, Math.round(scrollIndex)));
+
+  blueprintSection.style.setProperty("--blueprint-progress", progress.toFixed(3));
+
+  if (blueprintCurrent) {
+    blueprintCurrent.textContent = String(activeIndex + 1).padStart(2, "0");
+  }
+
+  blueprintSteps.forEach((step, index) => {
+    const isActive = index === activeIndex;
+
+    step.classList.toggle("active", isActive);
+
+    if (isActive) {
+      step.setAttribute("aria-current", "step");
+    } else {
+      step.removeAttribute("aria-current");
+    }
+  });
+
+  blueprintCards.forEach((card, index) => {
+    const distance = index - scrollIndex;
+    const absDistance = Math.abs(distance);
+    const isPast = distance < 0;
+    const x = reduceMotion ? 0 : distance * 86 + (isPast ? -44 : 0);
+    const y = reduceMotion ? 0 : distance * -28 + (isPast ? 36 : 0);
+    const z = reduceMotion ? 0 : absDistance * -118;
+    const scale = reduceMotion ? 1 : Math.max(0.7, 1 - absDistance * 0.07);
+    const opacity = Math.max(0.18, 1 - absDistance * 0.14);
+    const rotX = reduceMotion ? 0 : 8 + Math.min(absDistance, 3) * 1.4;
+    const rotY = reduceMotion ? 0 : -23 + distance * 3.6;
+    const rotZ = reduceMotion ? 0 : -1.2 + distance * 0.42;
+
+    card.classList.toggle("active", index === activeIndex);
+    card.style.setProperty("--x", `${x.toFixed(2)}px`);
+    card.style.setProperty("--y", `${y.toFixed(2)}px`);
+    card.style.setProperty("--z", `${z.toFixed(2)}px`);
+    card.style.setProperty("--rot-x", `${rotX.toFixed(2)}deg`);
+    card.style.setProperty("--rot-y", `${rotY.toFixed(2)}deg`);
+    card.style.setProperty("--rot-z", `${rotZ.toFixed(2)}deg`);
+    card.style.setProperty("--scale", scale.toFixed(3));
+    card.style.setProperty("--opacity", opacity.toFixed(3));
+    card.style.zIndex = String(100 - Math.round(absDistance * 10));
+  });
+}
+
+function scrollToBlueprintStep(index) {
+  if (!blueprintSection || blueprintCards.length < 2) return;
+
+  const sectionTop = window.scrollY + blueprintSection.getBoundingClientRect().top;
+  const scrollableDistance = Math.max(1, blueprintSection.offsetHeight - window.innerHeight);
+  const progress = index / (blueprintCards.length - 1);
+
+  window.scrollTo({
+    top: sectionTop + scrollableDistance * progress,
+    behavior: reduceMotion ? "auto" : "smooth"
+  });
+}
+
+window.addEventListener("scroll", updateBlueprintScene, { passive: true });
+window.addEventListener("resize", updateBlueprintScene);
+updateBlueprintScene();
+
 if (heroRight && !reduceMotion) {
   heroRight.addEventListener("pointermove", (event) => {
     const rect = heroRight.getBoundingClientRect();
@@ -194,6 +276,18 @@ templeButtons.forEach((button) => {
 
 heroTemples.forEach((image) => {
   image.addEventListener("mouseenter", () => setTemple(image.dataset.temple));
+});
+
+blueprintSteps.forEach((step) => {
+  const stepIndex = Number(step.dataset.blueprintStep);
+
+  step.addEventListener("click", () => scrollToBlueprintStep(stepIndex));
+  step.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      scrollToBlueprintStep(stepIndex);
+    }
+  });
 });
 
 routeItems.forEach((item) => {

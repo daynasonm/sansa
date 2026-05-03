@@ -592,6 +592,257 @@ button {
 .label-seonamsa { top: 72%; left: 24%; text-align: right; }
 .label-daeheungsa { top: 84%; left: 22%; text-align: right; }
 
+.blueprint-section {
+  position: relative;
+  min-height: 720svh;
+  isolation: isolate;
+  background: var(--paper);
+  color: var(--forest);
+}
+
+.blueprint-section::before {
+  content: "";
+  position: absolute;
+  right: -10%;
+  bottom: -2%;
+  left: -12%;
+  z-index: 0;
+  height: clamp(260px, 36svh, 430px);
+  background: var(--pattern-art) 52% 61% / 138% auto no-repeat;
+  opacity: 0.17;
+  filter: saturate(0.88);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.blueprint-stage {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(310px, 0.82fr) minmax(440px, 1.18fr);
+  gap: clamp(32px, 5.4vw, 86px);
+  align-items: center;
+  min-height: 100svh;
+  padding: clamp(46px, 6.2vw, 96px) clamp(32px, 5.4vw, 92px) clamp(76px, 8vw, 114px);
+  overflow: hidden;
+}
+
+.blueprint-copy {
+  max-width: 590px;
+}
+
+.blueprint-copy h2 {
+  max-width: 620px;
+  margin-bottom: 20px;
+  color: var(--forest);
+  font-size: clamp(36px, 4.5vw, 74px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.blueprint-copy > p:not(.kicker) {
+  max-width: 560px;
+  color: rgba(45, 85, 31, 0.76);
+  font-size: clamp(17px, 1.35vw, 22px);
+  line-height: 1.36;
+}
+
+.blueprint-steps {
+  display: grid;
+  gap: 0;
+  max-width: 560px;
+  margin-top: clamp(32px, 5.4svh, 64px);
+  list-style: none;
+  border-top: 1px solid rgba(45, 85, 31, 0.22);
+}
+
+.blueprint-step {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  padding: 14px 0 14px;
+  border-bottom: 1px solid rgba(45, 85, 31, 0.18);
+  color: rgba(45, 85, 31, 0.48);
+  cursor: pointer;
+  transition: color 180ms ease, padding 180ms ease, background 180ms ease;
+}
+
+.blueprint-step span {
+  color: currentColor;
+  font-family: var(--logo);
+  font-size: 14px;
+  line-height: 1.05;
+}
+
+.blueprint-step strong {
+  display: block;
+  color: currentColor;
+  font-family: var(--logo);
+  font-size: clamp(18px, 1.55vw, 25px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.blueprint-step p {
+  grid-column: 2;
+  max-width: 420px;
+  height: 0;
+  overflow: hidden;
+  color: rgba(45, 85, 31, 0.7);
+  font-size: clamp(14px, 1.05vw, 17px);
+  line-height: 1.28;
+  opacity: 0;
+  transition: height 240ms ease, opacity 220ms ease, margin 220ms ease;
+}
+
+.blueprint-step:hover,
+.blueprint-step:focus-visible,
+.blueprint-step.active {
+  color: var(--forest);
+}
+
+.blueprint-step:focus-visible {
+  outline: 2px solid rgba(0, 170, 164, 0.75);
+  outline-offset: 6px;
+}
+
+.blueprint-step.active {
+  padding-left: 10px;
+  background: linear-gradient(90deg, rgba(141, 204, 57, 0.14), transparent 62%);
+}
+
+.blueprint-step.active p {
+  height: auto;
+  margin-top: 8px;
+  opacity: 1;
+}
+
+.blueprint-visual {
+  position: relative;
+  min-height: min(760px, 78svh);
+  perspective: 1300px;
+  transform-style: preserve-3d;
+}
+
+.blueprint-grid {
+  position: absolute;
+  inset: -13% -10% -9% -18%;
+  border: 1px dashed rgba(45, 85, 31, 0.16);
+  background:
+    linear-gradient(rgba(45, 85, 31, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 85, 31, 0.12) 1px, transparent 1px);
+  background-size: 78px 78px;
+  transform: rotateX(62deg) rotateZ(-4deg) translate3d(0, 34px, -180px);
+  transform-origin: center;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.blueprint-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0 30%, rgba(141, 204, 57, 0.16) 30% 30.5%, transparent 30.5%),
+    linear-gradient(transparent 0 48%, rgba(0, 170, 164, 0.13) 48% 48.45%, transparent 48.45%);
+}
+
+.blueprint-counter {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  z-index: 8;
+  padding: 10px 13px 9px;
+  border: 1px solid rgba(45, 85, 31, 0.18);
+  background: rgba(255, 254, 250, 0.78);
+  color: var(--forest);
+  font-family: var(--logo);
+  font-size: 14px;
+  line-height: 1;
+  backdrop-filter: blur(12px);
+}
+
+.blueprint-stack {
+  position: absolute;
+  inset: 9% 1% 6% 0;
+  transform-style: preserve-3d;
+}
+
+.blueprint-card {
+  --x: 0px;
+  --y: 0px;
+  --z: 0px;
+  --rot-x: 8deg;
+  --rot-y: -20deg;
+  --rot-z: -1deg;
+  --scale: 1;
+  --opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  width: min(61vw, 660px);
+  min-width: 430px;
+  aspect-ratio: 1.44;
+  padding: clamp(14px, 1.4vw, 20px);
+  border: 1px solid rgba(45, 85, 31, 0.2);
+  background:
+    linear-gradient(135deg, rgba(255, 254, 250, 0.96), rgba(244, 247, 237, 0.9)),
+    var(--paper);
+  box-shadow: 0 28px 80px rgba(26, 42, 18, 0.14);
+  opacity: var(--opacity);
+  transform:
+    translate3d(calc(-50% + var(--x)), calc(-50% + var(--y)), var(--z))
+    rotateX(var(--rot-x))
+    rotateY(var(--rot-y))
+    rotateZ(var(--rot-z))
+    scale(var(--scale));
+  transform-style: preserve-3d;
+  transition:
+    opacity 260ms ease,
+    filter 260ms ease,
+    box-shadow 260ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.blueprint-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(0, 170, 164, 0.16);
+  pointer-events: none;
+}
+
+.blueprint-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+  filter: contrast(1.04) saturate(0.85);
+}
+
+.blueprint-card figcaption {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  padding-top: 10px;
+  color: rgba(45, 85, 31, 0.72);
+  font-family: var(--logo);
+  font-size: clamp(12px, 0.9vw, 15px);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.blueprint-card.active {
+  filter: saturate(1.06) contrast(1.03);
+  box-shadow: 0 34px 96px rgba(26, 42, 18, 0.18);
+}
+
 .temple-explorer {
   display: grid;
   grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
@@ -1132,6 +1383,45 @@ button {
   .line-seonamsa { left: 27%; width: 19%; }
   .line-daeheungsa { left: 25%; width: 15.2%; }
 
+  .blueprint-section {
+    min-height: auto;
+  }
+
+  .blueprint-stage {
+    position: relative;
+    display: block;
+    min-height: 0;
+    padding: 70px 28px 96px;
+    overflow: visible;
+  }
+
+  .blueprint-copy h2 {
+    font-size: clamp(36px, 8.2vw, 62px);
+  }
+
+  .blueprint-steps {
+    margin-top: 34px;
+  }
+
+  .blueprint-visual {
+    min-height: 610px;
+    margin-top: 42px;
+  }
+
+  .blueprint-grid {
+    inset: 0 -8% -4%;
+    transform: rotateX(58deg) rotateZ(-3deg) translate3d(0, 20px, -180px);
+  }
+
+  .blueprint-stack {
+    inset: 13% 0 4%;
+  }
+
+  .blueprint-card {
+    width: min(86vw, 580px);
+    min-width: 0;
+  }
+
   .temple-list,
   .temple-feature {
     min-height: 560px;
@@ -1243,6 +1533,48 @@ button {
   .label-seonamsa { top: 72%; right: auto; left: 8%; text-align: right; }
   .label-daeheungsa { top: 83%; right: auto; left: 6%; text-align: right; }
 
+  .blueprint-section::before {
+    height: 220px;
+    background-size: 210% auto;
+  }
+
+  .blueprint-stage {
+    padding: 56px 22px 86px;
+  }
+
+  .blueprint-copy > p:not(.kicker) {
+    font-size: 17px;
+  }
+
+  .blueprint-step {
+    grid-template-columns: 32px 1fr;
+    gap: 9px;
+    padding: 12px 0;
+  }
+
+  .blueprint-step.active {
+    padding-left: 7px;
+  }
+
+  .blueprint-visual {
+    min-height: 500px;
+  }
+
+  .blueprint-counter {
+    top: 4%;
+    right: 2%;
+  }
+
+  .blueprint-card {
+    width: min(91vw, 430px);
+    padding: 12px;
+  }
+
+  .blueprint-card figcaption {
+    min-height: 30px;
+    font-size: 11px;
+  }
+
   .temple-list {
     min-height: 520px;
   }
@@ -1308,6 +1640,8 @@ button {
 
   .temple,
   .route-map.is-visible .korea-shape,
+  .blueprint-card,
+  .blueprint-grid,
   .travel-notes div:hover {
     transform: none;
   }
