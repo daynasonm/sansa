@@ -105,8 +105,6 @@ document.body.classList.add("js-ready");
 
 if (introSplash) {
   let splashClosed = false;
-  let finishedRows = 0;
-  const splashRows = introSplash.querySelectorAll(".splash-row");
 
   const closeIntroSplash = () => {
     if (splashClosed) return;
@@ -120,17 +118,7 @@ if (introSplash) {
     }, reduceMotion ? 80 : 460);
   };
 
-  introSplash.addEventListener("animationend", (event) => {
-    if (event.target.classList.contains("splash-row")) {
-      finishedRows += 1;
-    }
-
-    if (finishedRows >= splashRows.length) {
-      closeIntroSplash();
-    }
-  });
-
-  window.setTimeout(closeIntroSplash, reduceMotion ? 700 : 6300);
+  window.setTimeout(closeIntroSplash, reduceMotion ? 700 : 5050);
 } else {
   document.body.classList.remove("splash-active");
 }

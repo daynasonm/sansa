@@ -124,8 +124,8 @@ body.splash-active {
   font-size: clamp(32px, min(7.4vw, 10svh), 112px);
   line-height: 0.9;
   white-space: nowrap;
-  animation-duration: 5.35s;
-  animation-timing-function: cubic-bezier(0.33, 0, 0.16, 1);
+  animation-duration: 4.85s;
+  animation-timing-function: steps(42, end);
   animation-fill-mode: forwards;
   will-change: transform;
 }
