@@ -61,6 +61,124 @@ body {
   overflow-x: hidden;
 }
 
+body.splash-active {
+  overflow: hidden;
+}
+
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background: var(--paper);
+  color: #75cf00;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 420ms ease, visibility 0s linear 420ms;
+}
+
+.intro-splash::before,
+.intro-splash::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: min(16vw, 180px);
+  pointer-events: none;
+}
+
+.intro-splash::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--paper) 0%, rgba(255, 254, 250, 0) 100%);
+}
+
+.intro-splash::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--paper) 0%, rgba(255, 254, 250, 0) 100%);
+}
+
+.intro-splash.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-window {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(0px, 0.45svh, 7px);
+  width: 100%;
+  padding-block: clamp(18px, 4svh, 48px);
+  overflow: hidden;
+}
+
+.splash-row {
+  display: block;
+  width: max-content;
+  min-height: 1em;
+  color: inherit;
+  font-family: var(--logo);
+  font-size: clamp(32px, min(7.4vw, 10svh), 112px);
+  line-height: 0.9;
+  white-space: nowrap;
+  animation-duration: 5.35s;
+  animation-timing-function: cubic-bezier(0.33, 0, 0.16, 1);
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+.splash-row-left {
+  transform: translateX(calc(-100% - 8vw));
+  animation-name: splash-run-left;
+}
+
+.splash-row-right {
+  transform: translateX(100vw);
+  animation-name: splash-run-right;
+}
+
+.splash-row img {
+  display: inline-block;
+  width: auto;
+  height: 0.76em;
+  margin-inline: 0.08em;
+  object-fit: contain;
+  vertical-align: -0.08em;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(7146%) hue-rotate(331deg) brightness(102%) contrast(101%);
+}
+
+.splash-row img[src*="Beopjusa"] {
+  height: 1.08em;
+}
+
+.splash-row img[src*="Bongjeongsa"],
+.splash-row img[src*="Magoksa"] {
+  height: 0.68em;
+}
+
+@keyframes splash-run-left {
+  0% {
+    transform: translateX(calc(-100% - 8vw));
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes splash-run-right {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - 8vw));
+  }
+}
+
 body.js-ready [data-reveal] {
   opacity: 0;
   transform: translateY(42px);

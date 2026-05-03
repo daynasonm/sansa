@@ -15,6 +15,7 @@ const blueprintSection = document.querySelector(".blueprint-section");
 const blueprintSteps = document.querySelectorAll(".blueprint-step");
 const blueprintCards = document.querySelectorAll(".blueprint-card");
 const blueprintCurrent = document.getElementById("blueprintCurrent");
+const introSplash = document.getElementById("introSplash");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const temples = {
@@ -101,6 +102,38 @@ function setTemple(name) {
 }
 
 document.body.classList.add("js-ready");
+
+if (introSplash) {
+  let splashClosed = false;
+  let finishedRows = 0;
+  const splashRows = introSplash.querySelectorAll(".splash-row");
+
+  const closeIntroSplash = () => {
+    if (splashClosed) return;
+
+    splashClosed = true;
+    introSplash.classList.add("is-leaving");
+    document.body.classList.remove("splash-active");
+
+    window.setTimeout(() => {
+      introSplash.remove();
+    }, reduceMotion ? 80 : 460);
+  };
+
+  introSplash.addEventListener("animationend", (event) => {
+    if (event.target.classList.contains("splash-row")) {
+      finishedRows += 1;
+    }
+
+    if (finishedRows >= splashRows.length) {
+      closeIntroSplash();
+    }
+  });
+
+  window.setTimeout(closeIntroSplash, reduceMotion ? 700 : 6300);
+} else {
+  document.body.classList.remove("splash-active");
+}
 
 if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
