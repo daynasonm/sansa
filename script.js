@@ -8,10 +8,8 @@ const featureTitle = document.getElementById("featureTitle");
 const featureLocation = document.getElementById("featureLocation");
 const featureDescription = document.getElementById("featureDescription");
 const hero = document.querySelector(".hero");
-const heroRight = document.querySelector(".hero-right");
-const heroTemples = document.querySelectorAll(".temple[data-temple]");
 const routeMap = document.querySelector(".route-map");
-const routeItems = document.querySelectorAll(".route-dot[data-temple], .route-label[data-temple]");
+const routeItems = document.querySelectorAll(".route-dot[data-temple], .route-label[data-temple], .route-node[data-temple], .temple-map-item[data-temple]");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const blueprintSection = document.querySelector(".blueprint-section");
 const blueprintSteps = document.querySelectorAll(".blueprint-step");
@@ -95,10 +93,6 @@ function setTemple(name) {
 
   templeButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.temple === name);
-  });
-
-  heroTemples.forEach((image) => {
-    image.classList.toggle("is-active", image.dataset.temple === name);
   });
 
   routeItems.forEach((item) => {
@@ -230,27 +224,6 @@ window.addEventListener("scroll", updateBlueprintScene, { passive: true });
 window.addEventListener("resize", updateBlueprintScene);
 updateBlueprintScene();
 
-if (heroRight && !reduceMotion) {
-  heroRight.addEventListener("pointermove", (event) => {
-    const rect = heroRight.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-    heroTemples.forEach((image) => {
-      const depth = Number(image.dataset.depth) || 0;
-      image.style.setProperty("--parallax-x", `${(x * depth * 34).toFixed(2)}px`);
-      image.style.setProperty("--parallax-y", `${(y * depth * 24).toFixed(2)}px`);
-    });
-  });
-
-  heroRight.addEventListener("pointerleave", () => {
-    heroTemples.forEach((image) => {
-      image.style.setProperty("--parallax-x", "0px");
-      image.style.setProperty("--parallax-y", "0px");
-    });
-  });
-}
-
 menuBtn.addEventListener("click", () => {
   infoPanel.classList.add("open");
   infoPanel.setAttribute("aria-hidden", "false");
@@ -274,10 +247,6 @@ templeButtons.forEach((button) => {
   button.addEventListener("click", () => setTemple(button.dataset.temple));
 });
 
-heroTemples.forEach((image) => {
-  image.addEventListener("mouseenter", () => setTemple(image.dataset.temple));
-});
-
 blueprintSteps.forEach((step) => {
   const stepIndex = Number(step.dataset.blueprintStep);
 
@@ -293,4 +262,5 @@ blueprintSteps.forEach((step) => {
 routeItems.forEach((item) => {
   item.addEventListener("mouseenter", () => setTemple(item.dataset.temple));
   item.addEventListener("focus", () => setTemple(item.dataset.temple));
+  item.addEventListener("click", () => setTemple(item.dataset.temple));
 });
