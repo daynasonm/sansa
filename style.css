@@ -98,6 +98,7 @@ body.splash-active {
   height: 100%;
   padding-block: clamp(18px, 4svh, 48px);
   overflow: hidden;
+  transform: translateY(clamp(-16px, -1.4svh, -8px));
 }
 
 .splash-row {
@@ -154,6 +155,10 @@ body.splash-active {
 
 .splash-row:nth-child(6) {
   margin-top: clamp(10px, 1.6svh, 24px);
+}
+
+.splash-row:nth-child(9) {
+  margin-top: clamp(8px, 1.1svh, 18px);
 }
 
 @keyframes splash-in-out-left {
@@ -511,6 +516,10 @@ button {
   fill: rgba(0, 170, 164, 0.16);
   stroke: rgba(0, 170, 164, 0.7);
   transform: scale(1.28);
+}
+
+.route-node.is-active .node-ring {
+  animation: node-signal 2.8s ease-out infinite;
 }
 
 .route-node:hover .node-core,
@@ -1034,6 +1043,17 @@ button {
   pointer-events: none;
 }
 
+.blueprint-card::after {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  z-index: 2;
+  background: linear-gradient(110deg, transparent 14%, rgba(0, 170, 164, 0.12) 48%, transparent 82%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-34%);
+}
+
 .blueprint-card img {
   display: block;
   width: 100%;
@@ -1058,6 +1078,10 @@ button {
 .blueprint-card.active {
   filter: saturate(1.06) contrast(1.03);
   box-shadow: 0 34px 96px rgba(26, 42, 18, 0.18);
+}
+
+.blueprint-card.active::after {
+  animation: blueprint-scan 5.2s ease-in-out infinite;
 }
 
 .temple-feature {
@@ -1142,6 +1166,7 @@ button {
 }
 
 .map-feature-panel {
+  --signal-progress: 0%;
   min-height: auto;
   height: 100%;
   grid-template-rows: clamp(260px, 30vw, 390px) auto;
@@ -1150,7 +1175,57 @@ button {
   row-gap: clamp(22px, 2.6vw, 36px);
   padding: clamp(46px, 5.3vw, 82px) clamp(44px, 5.6vw, 92px);
   border-left: 1px solid rgba(45, 85, 31, 0.14);
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(0, 170, 164, 0.06), transparent 178px),
+    var(--paper);
+}
+
+.map-feature-panel::after {
+  content: "";
+  position: absolute;
+  top: clamp(46px, 5.3vw, 82px);
+  bottom: clamp(46px, 5.3vw, 82px);
+  left: -1px;
+  z-index: 2;
+  width: 1px;
+  background: linear-gradient(180deg, var(--cyan) var(--signal-progress), rgba(45, 85, 31, 0.12) 0);
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+@keyframes node-signal {
+  0% {
+    stroke-width: 2;
+    stroke-opacity: 0.72;
+  }
+
+  70% {
+    stroke-width: 5;
+    stroke-opacity: 0;
+  }
+
+  100% {
+    stroke-width: 2;
+    stroke-opacity: 0;
+  }
+}
+
+@keyframes blueprint-scan {
+  0%,
+  34% {
+    opacity: 0;
+    transform: translateX(-34%);
+  }
+
+  48% {
+    opacity: 1;
+  }
+
+  66%,
+  100% {
+    opacity: 0;
+    transform: translateX(34%);
+  }
 }
 
 .map-feature-panel .feature-image-wrap {

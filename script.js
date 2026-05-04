@@ -3,6 +3,7 @@ const featureCount = document.getElementById("featureCount");
 const featureTitle = document.getElementById("featureTitle");
 const featureLocation = document.getElementById("featureLocation");
 const featureDescription = document.getElementById("featureDescription");
+const mapFeaturePanel = document.querySelector(".map-feature-panel");
 const routeMap = document.querySelector(".route-map");
 const routeItems = document.querySelectorAll(".route-dot[data-temple], .route-label[data-temple], .route-node[data-temple], .temple-map-item[data-temple]");
 const revealItems = document.querySelectorAll("[data-reveal]");
@@ -40,7 +41,7 @@ const temples = {
     image: "assets/images/Beopjusa.svg",
     location: "Boeun, Chungcheongbuk-do",
     description:
-      "Beopjusa brings the vertical silhouette of Korean Buddhist architecture into the route, pairing monumental form with the quieter rhythm of mountain practice."
+      "Beopjusa brings the vertical silhouette of Korean Buddhist architecture, pairing monumental form with the quieter rhythm of mountain practice."
   },
   Seonamsa: {
     count: "05 / 07",
@@ -74,6 +75,7 @@ function setTemple(name) {
     featuredTemple.src = temple.image;
     featuredTemple.alt = `${name} temple illustration`;
     featureCount.textContent = temple.count;
+    mapFeaturePanel?.style.setProperty("--signal-progress", `${(Number.parseInt(temple.count, 10) / 7) * 100}%`);
     featureTitle.textContent = name;
     featureLocation.textContent = temple.location;
     featureDescription.textContent = temple.description;
