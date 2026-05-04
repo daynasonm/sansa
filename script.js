@@ -3,7 +3,6 @@ const featureCount = document.getElementById("featureCount");
 const featureTitle = document.getElementById("featureTitle");
 const featureLocation = document.getElementById("featureLocation");
 const featureDescription = document.getElementById("featureDescription");
-const hero = document.querySelector(".hero");
 const routeMap = document.querySelector(".route-map");
 const routeItems = document.querySelectorAll(".route-dot[data-temple], .route-label[data-temple], .route-node[data-temple], .temple-map-item[data-temple]");
 const revealItems = document.querySelectorAll("[data-reveal]");
@@ -234,17 +233,6 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
   routeMap?.classList.add("is-visible");
 }
-
-function updateHeroProgress() {
-  if (!hero) return;
-
-  const rect = hero.getBoundingClientRect();
-  const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height - window.innerHeight)));
-  hero.style.setProperty("--hero-progress", progress.toFixed(3));
-}
-
-window.addEventListener("scroll", updateHeroProgress, { passive: true });
-updateHeroProgress();
 
 function getBlueprintProgress() {
   if (!blueprintSection) return 0;
