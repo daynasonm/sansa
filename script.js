@@ -8,6 +8,7 @@ const routeMap = document.querySelector(".route-map");
 const routeItems = document.querySelectorAll(".route-dot[data-temple], .route-label[data-temple], .route-node[data-temple], .temple-map-item[data-temple]");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const blueprintSection = document.querySelector(".blueprint-section");
+const blueprintStage = document.querySelector(".blueprint-stage");
 const blueprintSteps = document.querySelectorAll(".blueprint-step");
 const blueprintCards = document.querySelectorAll(".blueprint-card");
 const blueprintCurrent = document.getElementById("blueprintCurrent");
@@ -249,10 +250,11 @@ updateHeroProgress();
 function getBlueprintProgress() {
   if (!blueprintSection) return 0;
 
-  const rect = blueprintSection.getBoundingClientRect();
+  const sectionTop = window.scrollY + blueprintSection.getBoundingClientRect().top;
   const scrollableDistance = Math.max(1, blueprintSection.offsetHeight - window.innerHeight);
+  const scrollPosition = window.scrollY - sectionTop;
 
-  return Math.min(1, Math.max(0, -rect.top / scrollableDistance));
+  return Math.min(1, Math.max(0, scrollPosition / scrollableDistance));
 }
 
 function setBlueprintScrollTrack() {
@@ -269,10 +271,19 @@ function updateBlueprintScene() {
 
   setBlueprintScrollTrack();
 
+  const sectionTop = window.scrollY + blueprintSection.getBoundingClientRect().top;
+  const scrollableDistance = Math.max(1, blueprintSection.offsetHeight - window.innerHeight);
+  const scrollPosition = window.scrollY - sectionTop;
+  const isDesktop = window.matchMedia("(min-width: 901px)").matches;
   const progress = getBlueprintProgress();
   const lastIndex = blueprintCards.length - 1;
   const scrollIndex = progress * lastIndex;
   const activeIndex = Math.min(lastIndex, Math.max(0, Math.round(scrollIndex)));
+
+  if (blueprintStage) {
+    blueprintSection.classList.toggle("is-pinned", isDesktop && scrollPosition >= 0 && scrollPosition <= scrollableDistance);
+    blueprintSection.classList.toggle("is-past", isDesktop && scrollPosition > scrollableDistance);
+  }
 
   blueprintSection.style.setProperty("--blueprint-progress", progress.toFixed(3));
 

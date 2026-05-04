@@ -867,54 +867,75 @@ button {
 }
 
 .blueprint-stage {
-  position: sticky;
+  position: absolute;
   top: 0;
+  right: 0;
+  left: 0;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(300px, 0.76fr) minmax(440px, 1.24fr);
-  gap: clamp(28px, 4.8vw, 76px);
-  align-items: center;
-  height: 100svh;
+  grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 84px);
+  align-items: stretch;
+  height: 100vh;
+  height: 100dvh;
   min-height: 0;
-  padding: clamp(28px, 4.6vw, 64px) clamp(32px, 5vw, 84px);
+  padding: clamp(54px, 6dvh, 78px) clamp(34px, 5vw, 84px) clamp(42px, 5dvh, 64px);
   overflow: hidden;
 }
 
+.blueprint-section.is-pinned .blueprint-stage {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.blueprint-section.is-past .blueprint-stage {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
+
 .blueprint-copy {
-  max-width: 590px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+  max-width: 390px;
 }
 
 .blueprint-copy h2 {
-  max-width: 540px;
-  margin-bottom: 16px;
+  max-width: 390px;
+  margin-bottom: 14px;
   color: var(--forest);
-  font-size: clamp(32px, 3.35vw, 54px);
+  font-size: clamp(30px, 2.85vw, 48px);
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 0.98;
   letter-spacing: 0;
 }
 
 .blueprint-copy > p:not(.kicker) {
-  max-width: 500px;
+  max-width: 380px;
   color: rgba(45, 85, 31, 0.76);
-  font-size: clamp(14px, 1.05vw, 17px);
-  line-height: 1.28;
+  font-size: clamp(13px, 0.95vw, 15px);
+  line-height: 1.25;
 }
 
 .blueprint-steps {
   display: grid;
   gap: 0;
-  max-width: 520px;
-  margin-top: clamp(18px, 3svh, 34px);
+  max-width: 390px;
+  margin-top: clamp(16px, 2.4dvh, 28px);
   list-style: none;
   border-top: 1px solid rgba(45, 85, 31, 0.22);
 }
 
 .blueprint-step {
   display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 10px;
-  padding: 9px 0;
+  grid-template-columns: 26px 1fr;
+  gap: 8px;
+  padding: 7px 0;
   border-bottom: 1px solid rgba(45, 85, 31, 0.18);
   color: rgba(45, 85, 31, 0.48);
   cursor: pointer;
@@ -924,7 +945,7 @@ button {
 .blueprint-step span {
   color: currentColor;
   font-family: var(--logo);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.05;
 }
 
@@ -932,19 +953,19 @@ button {
   display: block;
   color: currentColor;
   font-family: var(--logo);
-  font-size: clamp(16px, 1.2vw, 20px);
+  font-size: clamp(15px, 1.05vw, 18px);
   font-weight: 400;
   line-height: 1;
 }
 
 .blueprint-step p {
   grid-column: 2;
-  max-width: 380px;
+  max-width: 310px;
   height: 0;
   overflow: hidden;
   color: rgba(45, 85, 31, 0.7);
-  font-size: clamp(12px, 0.9vw, 14px);
-  line-height: 1.28;
+  font-size: clamp(11px, 0.78vw, 13px);
+  line-height: 1.22;
   opacity: 0;
   transition: height 240ms ease, opacity 220ms ease, margin 220ms ease;
 }
@@ -961,19 +982,21 @@ button {
 }
 
 .blueprint-step.active {
-  padding-left: 8px;
+  padding-left: 7px;
   background: linear-gradient(90deg, rgba(141, 204, 57, 0.14), transparent 62%);
 }
 
 .blueprint-step.active p {
   height: auto;
-  margin-top: 6px;
+  margin-top: 4px;
   opacity: 1;
 }
 
 .blueprint-visual {
   position: relative;
-  min-height: min(700px, 76svh);
+  align-self: center;
+  height: min(76dvh, 720px);
+  min-height: 0;
   perspective: 1300px;
   transform-style: preserve-3d;
 }
@@ -1018,7 +1041,7 @@ button {
 
 .blueprint-stack {
   position: absolute;
-  inset: 9% 1% 6% 0;
+  inset: 8% 0 8% 0;
   transform-style: preserve-3d;
 }
 
@@ -1036,8 +1059,8 @@ button {
   left: 50%;
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
-  width: min(61vw, 660px);
-  min-width: 430px;
+  width: min(56vw, 640px);
+  min-width: 0;
   aspect-ratio: 1.44;
   padding: clamp(14px, 1.4vw, 20px);
   border: 1px solid rgba(45, 85, 31, 0.2);
