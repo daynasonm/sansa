@@ -38,7 +38,6 @@
   --mist: #e7eddf;
   --rose: #d99da0;
   --ink: #203f18;
-  --pattern-art: url("assets/images/sansa pattern@3x.png");
   --serif: "Fedra Serif A", Georgia, "Times New Roman", serif;
   --logo: "Francois One", Impact, "Arial Narrow Bold", sans-serif;
 }
@@ -180,9 +179,9 @@ body.splash-active {
 }
 
 body.js-ready [data-reveal] {
-  opacity: 0;
-  transform: translateY(42px);
-  transition: opacity 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 body.js-ready [data-reveal].is-visible {
@@ -204,39 +203,6 @@ button {
   border: 0;
   background: transparent;
   cursor: pointer;
-}
-
-.story-nav {
-  position: fixed;
-  right: clamp(18px, 2.4vw, 34px);
-  top: clamp(18px, 2.4vw, 34px);
-  z-index: 90;
-  display: flex;
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid rgba(45, 85, 31, 0.32);
-  background: rgba(255, 254, 250, 0.74);
-  box-shadow: 0 10px 26px rgba(26, 42, 18, 0.13);
-  backdrop-filter: blur(12px);
-}
-
-.story-nav a {
-  display: block;
-  min-width: 68px;
-  padding: 10px 12px 9px;
-  background: rgba(255, 254, 250, 0.78);
-  color: var(--forest);
-  font-family: var(--logo);
-  font-size: 13px;
-  line-height: 1;
-  text-align: center;
-  transition: background 180ms ease, color 180ms ease;
-}
-
-.story-nav a:hover,
-.story-nav a:focus-visible {
-  background: var(--forest);
-  color: var(--lime);
 }
 
 .visually-hidden {
@@ -452,7 +418,7 @@ button {
 
 .map-section-title {
   position: absolute;
-  top: clamp(34px, 5vw, 72px);
+  top: clamp(28px, 4vw, 56px);
   left: clamp(34px, 5vw, 74px);
   z-index: 3;
   max-width: min(660px, calc(52vw - 72px));
@@ -466,7 +432,7 @@ button {
 .map-feature-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(420px, 0.92fr);
-  min-height: clamp(680px, 84svh, 880px);
+  min-height: clamp(620px, 76svh, 800px);
 }
 
 .route-map {
@@ -476,8 +442,8 @@ button {
   align-items: center;
   justify-content: center;
   height: 100%;
-  min-height: 600px;
-  padding: clamp(104px, 11svh, 140px) clamp(44px, 5vw, 86px) clamp(34px, 4vw, 58px);
+  min-height: 560px;
+  padding: clamp(82px, 8svh, 112px) clamp(44px, 5vw, 86px) clamp(28px, 3.4vw, 48px);
   overflow: hidden;
   background: var(--paper);
 }
@@ -491,8 +457,8 @@ button {
   z-index: 1;
   width: min(900px, calc(100% - 88px), calc((100svh - 190px) * 1.214));
   aspect-ratio: 1012 / 833;
-  opacity: 0;
-  transform: translateY(22px) scale(0.985);
+  opacity: 1;
+  transform: none;
   transition: opacity 650ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -666,8 +632,8 @@ button {
   max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 16px 28px rgba(26, 42, 18, 0.08));
-  opacity: 0;
-  transform: translateY(20px) scale(0.985);
+  opacity: 1;
+  transform: none;
   transition: opacity 650ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -689,7 +655,7 @@ button {
 }
 
 .route-map.is-visible .korea-shape {
-  transform: translateY(-10px);
+  transform: none;
 }
 
 .route-dot {
@@ -701,8 +667,8 @@ button {
   border-radius: 50%;
   background: #8d5a17;
   box-shadow: 0 0 0 2px rgba(141, 90, 23, 0.42), 0 0 0 10px rgba(141, 90, 23, 0.1);
-  transform: scale(0.72);
-  opacity: 0;
+  transform: scale(1);
+  opacity: 1;
   transition: opacity 420ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 180ms ease;
 }
 
@@ -722,8 +688,8 @@ button {
   z-index: 2;
   border-top: 1px dashed rgba(45, 85, 31, 0.38);
   transform-origin: left center;
-  opacity: 0;
-  scale: 0 1;
+  opacity: 1;
+  scale: 1 1;
   transition: opacity 500ms ease, scale 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -755,8 +721,8 @@ button {
   height: clamp(60px, 5.5vw, 92px);
   color: var(--cyan);
   background: var(--temple-icon) center / contain no-repeat;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: none;
   transition: opacity 520ms ease, transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1002,41 +968,11 @@ button {
 }
 
 .blueprint-grid {
-  position: absolute;
-  inset: -13% -10% -9% -18%;
-  border: 1px dashed rgba(45, 85, 31, 0.16);
-  background:
-    linear-gradient(rgba(45, 85, 31, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(45, 85, 31, 0.12) 1px, transparent 1px);
-  background-size: 78px 78px;
-  transform: rotateX(62deg) rotateZ(-4deg) translate3d(0, 34px, -180px);
-  transform-origin: center;
-  opacity: 0.72;
-  pointer-events: none;
+  display: none;
 }
 
 .blueprint-grid::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, transparent 0 30%, rgba(141, 204, 57, 0.16) 30% 30.5%, transparent 30.5%),
-    linear-gradient(transparent 0 48%, rgba(0, 170, 164, 0.13) 48% 48.45%, transparent 48.45%);
-}
-
-.blueprint-counter {
-  position: absolute;
-  top: 8%;
-  right: 6%;
-  z-index: 8;
-  padding: 10px 13px 9px;
-  border: 1px solid rgba(45, 85, 31, 0.18);
-  background: rgba(255, 254, 250, 0.78);
-  color: var(--forest);
-  font-family: var(--logo);
-  font-size: 14px;
-  line-height: 1;
-  backdrop-filter: blur(12px);
+  content: none;
 }
 
 .blueprint-stack {
@@ -1123,8 +1059,8 @@ button {
   display: grid;
   align-content: center;
   justify-items: center;
-  min-height: 620px;
-  padding: clamp(44px, 6vw, 86px);
+  min-height: 560px;
+  padding: clamp(38px, 5vw, 70px);
   background: var(--paper);
   overflow: hidden;
 }
@@ -1165,15 +1101,17 @@ button {
   position: relative;
   z-index: 1;
   width: min(100%, 520px);
-  margin-top: 36px;
+  margin-top: 28px;
   color: var(--forest);
 }
 
 .feature-count {
-  margin-bottom: 10px;
+  margin-bottom: 11px;
   color: var(--cyan);
-  font-family: var(--logo);
-  font-size: 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(12px, 0.9vw, 15px);
+  font-weight: 650;
+  letter-spacing: 0;
   line-height: 1;
 }
 
@@ -1203,8 +1141,8 @@ button {
   grid-template-rows: clamp(260px, 30vw, 390px) auto;
   align-content: center;
   justify-items: flex-start;
-  row-gap: clamp(28px, 3.2vw, 44px);
-  padding: clamp(58px, 6.4vw, 104px) clamp(48px, 6vw, 104px);
+  row-gap: clamp(22px, 2.6vw, 36px);
+  padding: clamp(46px, 5.3vw, 82px) clamp(44px, 5.6vw, 92px);
   border-left: 1px solid rgba(45, 85, 31, 0.14);
   background: var(--paper);
 }
@@ -1230,7 +1168,7 @@ button {
 }
 
 .map-feature-panel .feature-count {
-  font-size: clamp(15px, 1vw, 18px);
+  font-size: clamp(12px, 0.9vw, 15px);
 }
 
 .map-feature-panel .feature-copy h2 {
@@ -1251,31 +1189,24 @@ button {
 .context-section {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
-  gap: clamp(36px, 5vw, 82px);
-  padding: clamp(70px, 8vw, 118px) clamp(28px, 6vw, 96px);
+  grid-template-columns: minmax(0, 1160px);
+  justify-content: center;
+  align-content: center;
+  gap: clamp(22px, 3vw, 42px);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(54px, 6vw, 84px) clamp(28px, 6vw, 96px);
   background: var(--forest);
   color: var(--lime);
   overflow: hidden;
 }
 
 .context-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: var(--pattern-art) 50% 50% / cover no-repeat;
-  opacity: 0.24;
-  filter: saturate(0.9) hue-rotate(-8deg);
-  mix-blend-mode: screen;
-  pointer-events: none;
+  content: none;
 }
 
 .pattern-landscape {
-  position: relative;
-  z-index: 1;
-  min-height: 360px;
-  visibility: hidden;
+  display: none;
 }
 
 .pattern-landscape span {
@@ -1313,6 +1244,7 @@ button {
 .context-copy {
   position: relative;
   z-index: 1;
+  max-width: 920px;
 }
 
 .context-copy .kicker {
@@ -1328,7 +1260,7 @@ button {
 
 .context-copy p:last-child {
   max-width: 640px;
-  margin-top: 24px;
+  margin-top: 18px;
   color: var(--paper);
   font-size: clamp(15px, 1.15vw, 19px);
   line-height: 1.28;
@@ -1340,35 +1272,48 @@ button {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: clamp(18px, 3vw, 40px);
-  border: 1px solid rgba(141, 204, 57, 0.5);
-  background: rgba(141, 204, 57, 0.5);
+  gap: clamp(10px, 1.35vw, 18px);
+  margin-top: clamp(8px, 2vw, 26px);
+  border: 0;
+  background: transparent;
 }
 
 .travel-notes div {
-  min-height: 170px;
-  padding: clamp(20px, 2.5vw, 32px);
-  background: var(--forest);
-  transition: background 180ms ease, transform 180ms ease;
+  position: relative;
+  min-height: 124px;
+  padding: clamp(17px, 2vw, 26px);
+  border: 1px solid rgba(255, 254, 250, 0.13);
+  background: rgba(255, 254, 250, 0.045);
+  backdrop-filter: blur(10px);
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.travel-notes div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(141, 204, 57, 0.7), rgba(141, 204, 57, 0));
 }
 
 .travel-notes div:hover {
-  background: #244818;
-  transform: translateY(-8px);
+  border-color: rgba(141, 204, 57, 0.28);
+  background: rgba(255, 254, 250, 0.07);
 }
 
 .travel-notes h3 {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-family: var(--logo);
-  font-size: clamp(22px, 2vw, 31px);
+  font-size: clamp(18px, 1.55vw, 24px);
   font-weight: 400;
   line-height: 0.9;
 }
 
 .travel-notes p {
-  color: var(--paper);
-  font-size: clamp(14px, 1.05vw, 17px);
+  color: rgba(255, 254, 250, 0.86);
+  font-size: clamp(13px, 0.95vw, 15px);
   line-height: 1.28;
 }
 
@@ -1413,17 +1358,6 @@ button {
 }
 
 @media (max-width: 900px) {
-  .story-nav {
-    right: 14px;
-    left: 14px;
-    top: 14px;
-  }
-
-  .story-nav a {
-    flex: 1;
-    min-width: 0;
-  }
-
   .hero {
     display: block;
     min-height: 0;
@@ -1453,7 +1387,7 @@ button {
 
   .map-section {
     display: block;
-    min-height: 100svh;
+    min-height: auto;
   }
 
   .map-section-title {
@@ -1461,7 +1395,7 @@ button {
     top: auto;
     left: auto;
     max-width: none;
-    padding: 52px 28px 0;
+    padding: 44px 28px 0;
     font-size: clamp(34px, 8vw, 56px);
   }
 
@@ -1472,8 +1406,8 @@ button {
 
   .route-map {
     height: auto;
-    min-height: 760px;
-    padding-top: 44px;
+    min-height: 680px;
+    padding-top: 34px;
   }
 
   .map-composition {
@@ -1565,7 +1499,7 @@ button {
     position: relative;
     display: block;
     min-height: 0;
-    padding: 70px 28px 96px;
+    padding: 58px 28px 72px;
     overflow: visible;
   }
 
@@ -1578,13 +1512,12 @@ button {
   }
 
   .blueprint-visual {
-    min-height: 610px;
-    margin-top: 42px;
+    min-height: 560px;
+    margin-top: 30px;
   }
 
   .blueprint-grid {
-    inset: 0 -8% -4%;
-    transform: rotateX(58deg) rotateZ(-3deg) translate3d(0, 20px, -180px);
+    display: none;
   }
 
   .blueprint-stack {
@@ -1597,14 +1530,14 @@ button {
   }
 
   .temple-feature {
-    min-height: 560px;
+    min-height: 520px;
   }
 
   .map-feature-panel {
     grid-template-rows: 280px auto;
-    min-height: 620px;
-    row-gap: 30px;
-    padding: 64px 28px 86px;
+    min-height: 560px;
+    row-gap: 24px;
+    padding: 52px 28px 66px;
     border-top: 1px solid rgba(45, 85, 31, 0.12);
     border-left: 0;
   }
@@ -1618,7 +1551,7 @@ button {
   }
 
   .pattern-landscape {
-    min-height: 260px;
+    display: none;
   }
 
   .travel-notes {
@@ -1654,7 +1587,7 @@ button {
   .temple-7 { top: auto; right: 36%; bottom: 12%; left: auto; width: 108px; }
 
   .route-map {
-    min-height: 720px;
+    min-height: 640px;
   }
 
   .map-composition {
@@ -1734,7 +1667,7 @@ button {
   }
 
   .blueprint-stage {
-    padding: 56px 22px 86px;
+    padding: 48px 22px 66px;
   }
 
   .blueprint-copy > p:not(.kicker) {
@@ -1752,12 +1685,7 @@ button {
   }
 
   .blueprint-visual {
-    min-height: 500px;
-  }
-
-  .blueprint-counter {
-    top: 4%;
-    right: 2%;
+    min-height: 460px;
   }
 
   .blueprint-card {
@@ -1772,13 +1700,13 @@ button {
 
   .temple-feature {
     min-height: auto;
-    padding: 58px 28px 66px;
+    padding: 46px 28px 56px;
   }
 
   .map-feature-panel {
     grid-template-rows: 230px auto;
-    row-gap: 28px;
-    padding: 58px 28px 78px;
+    row-gap: 22px;
+    padding: 46px 28px 58px;
   }
 
   .feature-image-wrap {
@@ -1791,7 +1719,11 @@ button {
   }
 
   .context-section {
-    padding: 64px 28px;
+    padding: 52px 28px;
+  }
+
+  .travel-notes div {
+    min-height: auto;
   }
 
   .site-footer {

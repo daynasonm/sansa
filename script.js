@@ -11,7 +11,6 @@ const blueprintSection = document.querySelector(".blueprint-section");
 const blueprintStage = document.querySelector(".blueprint-stage");
 const blueprintSteps = document.querySelectorAll(".blueprint-step");
 const blueprintCards = document.querySelectorAll(".blueprint-card");
-const blueprintCurrent = document.getElementById("blueprintCurrent");
 const introSplash = document.getElementById("introSplash");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -261,9 +260,10 @@ function setBlueprintScrollTrack() {
   if (!blueprintSection || !blueprintCards.length) return;
 
   const panelCount = blueprintCards.length;
+  const scrollScreens = Math.max(3.6, panelCount * 0.82);
 
   blueprintSection.style.setProperty("--blueprint-panel-count", panelCount);
-  blueprintSection.style.setProperty("--blueprint-scroll-height", `${window.innerHeight * panelCount}px`);
+  blueprintSection.style.setProperty("--blueprint-scroll-height", `${window.innerHeight * scrollScreens}px`);
 }
 
 function updateBlueprintScene() {
@@ -286,10 +286,6 @@ function updateBlueprintScene() {
   }
 
   blueprintSection.style.setProperty("--blueprint-progress", progress.toFixed(3));
-
-  if (blueprintCurrent) {
-    blueprintCurrent.textContent = String(activeIndex + 1).padStart(2, "0");
-  }
 
   blueprintSteps.forEach((step, index) => {
     const isActive = index === activeIndex;
