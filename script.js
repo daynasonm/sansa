@@ -1,7 +1,3 @@
-const menuBtn = document.getElementById("menuBtn");
-const closeBtn = document.getElementById("closeBtn");
-const infoPanel = document.getElementById("infoPanel");
-const templeButtons = document.querySelectorAll(".temple-name");
 const featuredTemple = document.getElementById("featuredTemple");
 const featureCount = document.getElementById("featureCount");
 const featureTitle = document.getElementById("featureTitle");
@@ -92,34 +88,117 @@ function setTemple(name) {
     updateFeature();
   }
 
-  templeButtons.forEach((button) => {
-    button.classList.toggle("active", button.dataset.temple === name);
-  });
-
   routeItems.forEach((item) => {
     item.classList.toggle("is-active", item.dataset.temple === name);
   });
 }
 
 document.body.classList.add("js-ready");
+document.documentElement.classList.add("splash-active");
 
 if (introSplash) {
   let splashClosed = false;
+  let splashStarted = false;
+  let splashTimerId;
+  let splashFallbackId;
+  const splashWindow = introSplash.querySelector(".splash-window");
+  const splashRows = introSplash.querySelectorAll(".splash-row");
+
+  const resetHorizontalScroll = () => {
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+    window.scrollTo({ left: 0, top: window.scrollY, behavior: "auto" });
+  };
+
+  const fitSplashRows = () => {
+    if (!splashRows.length) return;
+
+    splashWindow?.style.removeProperty("--splash-font-size");
+
+    const splashStyles = window.getComputedStyle(splashWindow || introSplash);
+    const rowStyles = Array.from(splashRows).map((row) => window.getComputedStyle(row));
+    const firstRowFontSize = parseFloat(rowStyles[0].fontSize) || 92;
+    const containerWidth = splashWindow?.clientWidth || introSplash.clientWidth || window.innerWidth;
+    const containerHeight = splashWindow?.clientHeight || introSplash.clientHeight || window.innerHeight;
+    const gap = parseFloat(splashStyles.rowGap) || parseFloat(splashStyles.gap) || 0;
+    const verticalPadding =
+      (parseFloat(splashStyles.paddingTop) || 0) + (parseFloat(splashStyles.paddingBottom) || 0);
+    const fixedVerticalSpace = rowStyles.reduce((total, styles) => {
+      return total + (parseFloat(styles.marginTop) || 0) + (parseFloat(styles.marginBottom) || 0);
+    }, verticalPadding + gap * Math.max(0, splashRows.length - 1));
+    const rowHeight = Array.from(splashRows).reduce((total, row) => {
+      return total + row.getBoundingClientRect().height;
+    }, 0);
+    const availableHeight = Math.max(180, containerHeight - fixedVerticalSpace - 12);
+    const heightScale = availableHeight / Math.max(1, rowHeight);
+
+    let widthScale = 1;
+
+    splashRows.forEach((row) => {
+      const styles = window.getComputedStyle(row);
+      const edge = parseFloat(styles.getPropertyValue("--splash-edge")) || 24;
+      const availableWidth = Math.max(180, containerWidth - edge * 2 - 16);
+
+      widthScale = Math.min(widthScale, availableWidth / Math.max(1, row.scrollWidth));
+    });
+
+    const splashFontSize = Math.max(16, Math.floor(firstRowFontSize * Math.min(1, widthScale, heightScale)));
+
+    splashWindow?.style.setProperty("--splash-font-size", `${splashFontSize}px`);
+  };
+
+  const waitForSplashImages = () => {
+    const splashImages = introSplash.querySelectorAll("img");
+    const imagePromises = Array.from(splashImages).map((image) => {
+      if (image.complete) return Promise.resolve();
+
+      return new Promise((resolve) => {
+        image.addEventListener("load", resolve, { once: true });
+        image.addEventListener("error", resolve, { once: true });
+      });
+    });
+
+    return Promise.all(imagePromises);
+  };
+
+  const startIntroSplash = () => {
+    if (splashStarted || splashClosed) return;
+
+    splashStarted = true;
+    window.clearTimeout(splashFallbackId);
+    fitSplashRows();
+    introSplash.classList.add("is-ready");
+    splashTimerId = window.setTimeout(closeIntroSplash, reduceMotion ? 700 : 5500);
+  };
 
   const closeIntroSplash = () => {
     if (splashClosed) return;
 
     splashClosed = true;
+    window.clearTimeout(splashTimerId);
+    window.clearTimeout(splashFallbackId);
+    window.removeEventListener("resize", fitSplashRows);
+    resetHorizontalScroll();
     introSplash.classList.add("is-leaving");
+    document.documentElement.classList.remove("splash-active");
     document.body.classList.remove("splash-active");
 
     window.setTimeout(() => {
       introSplash.remove();
+      resetHorizontalScroll();
     }, reduceMotion ? 80 : 460);
   };
 
-  window.setTimeout(closeIntroSplash, reduceMotion ? 700 : 5050);
+  window.addEventListener("resize", fitSplashRows);
+  window.requestAnimationFrame(fitSplashRows);
+  Promise.all([document.fonts?.ready || Promise.resolve(), waitForSplashImages()])
+    .then(() => {
+      window.requestAnimationFrame(startIntroSplash);
+    })
+    .catch(startIntroSplash);
+  splashFallbackId = window.setTimeout(startIntroSplash, 1800);
 } else {
+  document.documentElement.classList.remove("splash-active");
   document.body.classList.remove("splash-active");
 }
 
@@ -176,8 +255,19 @@ function getBlueprintProgress() {
   return Math.min(1, Math.max(0, -rect.top / scrollableDistance));
 }
 
+function setBlueprintScrollTrack() {
+  if (!blueprintSection || !blueprintCards.length) return;
+
+  const panelCount = blueprintCards.length;
+
+  blueprintSection.style.setProperty("--blueprint-panel-count", panelCount);
+  blueprintSection.style.setProperty("--blueprint-scroll-height", `${window.innerHeight * panelCount}px`);
+}
+
 function updateBlueprintScene() {
   if (!blueprintSection || !blueprintCards.length) return;
+
+  setBlueprintScrollTrack();
 
   const progress = getBlueprintProgress();
   const lastIndex = blueprintCards.length - 1;
@@ -231,6 +321,8 @@ function updateBlueprintScene() {
 function scrollToBlueprintStep(index) {
   if (!blueprintSection || blueprintCards.length < 2) return;
 
+  setBlueprintScrollTrack();
+
   const sectionTop = window.scrollY + blueprintSection.getBoundingClientRect().top;
   const scrollableDistance = Math.max(1, blueprintSection.offsetHeight - window.innerHeight);
   const progress = index / (blueprintCards.length - 1);
@@ -244,29 +336,6 @@ function scrollToBlueprintStep(index) {
 window.addEventListener("scroll", updateBlueprintScene, { passive: true });
 window.addEventListener("resize", updateBlueprintScene);
 updateBlueprintScene();
-
-menuBtn.addEventListener("click", () => {
-  infoPanel.classList.add("open");
-  infoPanel.setAttribute("aria-hidden", "false");
-});
-
-closeBtn.addEventListener("click", () => {
-  infoPanel.classList.remove("open");
-  infoPanel.setAttribute("aria-hidden", "true");
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    infoPanel.classList.remove("open");
-    infoPanel.setAttribute("aria-hidden", "true");
-  }
-});
-
-templeButtons.forEach((button) => {
-  button.addEventListener("mouseenter", () => setTemple(button.dataset.temple));
-  button.addEventListener("focus", () => setTemple(button.dataset.temple));
-  button.addEventListener("click", () => setTemple(button.dataset.temple));
-});
 
 blueprintSteps.forEach((step) => {
   const stepIndex = Number(step.dataset.blueprintStep);
@@ -285,3 +354,5 @@ routeItems.forEach((item) => {
   item.addEventListener("focus", () => setTemple(item.dataset.temple));
   item.addEventListener("click", () => setTemple(item.dataset.temple));
 });
+
+setTemple("Tongdosa");
